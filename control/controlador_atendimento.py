@@ -178,8 +178,7 @@ class ControladorAtendimento:
             "saldo_devedor": atendimento.calcular_saldo_devedor(),
         }
 
-    @staticmethod
-    def __dados_procedimentos(atendimento: Atendimento) -> list:
+    def __dados_procedimentos(self, atendimento: Atendimento) -> list:
         return [
             {
                 "descricao": p.descricao,
@@ -189,8 +188,7 @@ class ControladorAtendimento:
             for p in atendimento.procedimentos
         ]
 
-    @staticmethod
-    def __dados_pagamentos(atendimento: Atendimento) -> list:
+    def __dados_pagamentos(self, atendimento: Atendimento) -> list:
         lista = []
         for p in atendimento.pagamentos:
             item = {"data": p.data, "valor_pago": p.valor_pago}
@@ -223,8 +221,7 @@ class ControladorAtendimento:
             .buscar_profissional_por_registro(dados["registro_profissional"])
         return Procedimento(dados["descricao"], dados["custo"], profissional)
 
-    @staticmethod
-    def __criar_pagamento(dados: dict) -> Pagamento:
+    def __criar_pagamento(self, dados: dict) -> Pagamento:
         modalidade = dados["modalidade"]
         if modalidade == 1:
             return PagamentoDinheiro(dados["data"], dados["valor_pago"])
@@ -242,8 +239,7 @@ class ControladorAtendimento:
         self.listar_atendimentos()
         return self.buscar_atendimento_por_codigo(self.__tela_atendimento.seleciona_atendimento())
 
-    @staticmethod
-    def __buscar_procedimento(atendimento: Atendimento, descricao: str, falhar: bool = True):
+    def __buscar_procedimento(self, atendimento: Atendimento, descricao: str, falhar: bool = True):
         alvo = descricao.strip().lower()
         for procedimento in atendimento.procedimentos:
             if procedimento.descricao.lower() == alvo:

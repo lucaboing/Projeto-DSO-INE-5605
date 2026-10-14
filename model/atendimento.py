@@ -33,8 +33,7 @@ class Atendimento:
         self.__pagamentos: list[Pagamento] = []
 
     # ---------- validações internas ----------
-    @staticmethod
-    def __validar_horario(inicio: time, fim: time, clinica: Clinica):
+    def __validar_horario(self, inicio: time, fim: time, clinica: Clinica):
         validar_horario(inicio, "Horário de início")
         validar_horario(fim, "Horário de fim")
         if inicio >= fim:
@@ -45,31 +44,27 @@ class Atendimento:
                 f"da clínica ({clinica.horario_abertura:%H:%M} às {clinica.horario_fechamento:%H:%M})."
             )
 
-    @staticmethod
-    def __validar_tipo(tipo: TipoAtendimento) -> TipoAtendimento:
+    def __validar_tipo(self, tipo: TipoAtendimento) -> TipoAtendimento:
         if not isinstance(tipo, TipoAtendimento):
             raise TypeError("O tipo deve ser um TipoAtendimento.")
         return tipo
 
-    @classmethod
-    def __validar_paciente(cls, paciente: Paciente) -> Paciente:
+    def __validar_paciente(self, paciente: Paciente) -> Paciente:
         if not isinstance(paciente, Paciente):
             raise TypeError("O paciente deve ser um objeto Paciente.")
-        if paciente.idade < cls.IDADE_MINIMA:
+        if paciente.idade < self.IDADE_MINIMA:
             raise PacienteMenorIdadeException(
                 f"O paciente {paciente.nome} tem {paciente.idade} anos. É necessário ter "
-                f"{cls.IDADE_MINIMA} anos completos para realizar atendimento de forma independente."
+                f"{self.IDADE_MINIMA} anos completos para realizar atendimento de forma independente."
             )
         return paciente
 
-    @staticmethod
-    def __validar_profissional(profissional: ProfissionalSaude) -> ProfissionalSaude:
+    def __validar_profissional(self, profissional: ProfissionalSaude) -> ProfissionalSaude:
         if not isinstance(profissional, ProfissionalSaude):
             raise TypeError("O profissional deve ser um objeto ProfissionalSaude.")
         return profissional
 
-    @staticmethod
-    def __validar_clinica(clinica: Clinica) -> Clinica:
+    def __validar_clinica(self, clinica: Clinica) -> Clinica:
         if not isinstance(clinica, Clinica):
             raise TypeError("A clínica deve ser um objeto Clinica.")
         return clinica

@@ -25,16 +25,14 @@ class TelaAbstrata(ABC):
         return self.le_inteiro("Escolha a opção: ", list(itens))
 
     # ---------------------------------------------------------------- leitura
-    @staticmethod
-    def le_texto(mensagem: str) -> str:
+    def le_texto(self, mensagem: str) -> str:
         while True:
             valor = input(mensagem).strip()
             if valor:
                 return valor
             print("   Campo obrigatório. Tente novamente.")
 
-    @staticmethod
-    def le_inteiro(mensagem: str, validos: list = None) -> int:
+    def le_inteiro(self, mensagem: str, validos: list = None) -> int:
         while True:
             texto = input(mensagem).strip()
             try:
@@ -47,8 +45,7 @@ class TelaAbstrata(ABC):
                 continue
             return valor
 
-    @staticmethod
-    def le_decimal(mensagem: str) -> float:
+    def le_decimal(self, mensagem: str) -> float:
         while True:
             texto = input(mensagem).strip().replace("R$", "").strip()
             if "," in texto:  # aceita 1.234,50 / 1234,50 / 1234.50
@@ -63,8 +60,7 @@ class TelaAbstrata(ABC):
                 continue
             return valor
 
-    @staticmethod
-    def le_data(mensagem: str) -> date:
+    def le_data(self, mensagem: str) -> date:
         while True:
             texto = input(mensagem + " (dd/mm/aaaa): ").strip()
             try:
@@ -72,8 +68,7 @@ class TelaAbstrata(ABC):
             except ValueError:
                 print("   Data inválida. Use o formato dd/mm/aaaa.")
 
-    @staticmethod
-    def le_horario(mensagem: str) -> time:
+    def le_horario(self, mensagem: str) -> time:
         while True:
             texto = input(mensagem + " (hh:mm): ").strip()
             try:
@@ -82,27 +77,22 @@ class TelaAbstrata(ABC):
                 print("   Horário inválido. Use o formato hh:mm.")
 
     # ------------------------------------------------------------- formatação
-    @staticmethod
-    def fmt_data(valor: date) -> str:
+    def fmt_data(self, valor: date) -> str:
         return valor.strftime("%d/%m/%Y")
 
-    @staticmethod
-    def fmt_hora(valor: time) -> str:
+    def fmt_hora(self, valor: time) -> str:
         return valor.strftime("%H:%M")
 
-    @staticmethod
-    def fmt_moeda(valor: float) -> str:
+    def fmt_moeda(self, valor: float) -> str:
         texto = f"{valor:,.2f}"
         return "R$ " + texto.replace(",", "X").replace(".", ",").replace("X", ".")
 
-    @staticmethod
-    def fmt_cpf(cpf: str) -> str:
+    def fmt_cpf(self, cpf: str) -> str:
         if len(cpf) == 11 and cpf.isdigit():
             return f"{cpf[:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:]}"
         return cpf
 
-    @staticmethod
-    def fmt_celular(celular: str) -> str:
+    def fmt_celular(self, celular: str) -> str:
         if celular.isdigit() and len(celular) == 11:
             return f"({celular[:2]}) {celular[2:7]}-{celular[7:]}"
         if celular.isdigit() and len(celular) == 10:
