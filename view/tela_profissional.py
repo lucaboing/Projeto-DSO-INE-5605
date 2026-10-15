@@ -12,7 +12,6 @@ class TelaProfissional(TelaAbstrata):
         })
 
     def pega_dados_profissional(self, editar: bool = False) -> dict:
-        """Na alteração o registro profissional (identificador) não é pedido de novo."""
         print("\n--- Dados do profissional ---")
         dados = {
             "nome": self.le_texto("Nome: "),
