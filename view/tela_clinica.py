@@ -13,7 +13,6 @@ class TelaClinica(TelaAbstrata):
         })
 
     def pega_dados_clinica(self, editar: bool = False) -> dict:
-        """Na alteração o nome (identificador) não é pedido de novo."""
         print("\n--- Dados da clínica ---")
         dados = {}
         if not editar:

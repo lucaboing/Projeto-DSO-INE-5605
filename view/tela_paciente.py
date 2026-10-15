@@ -12,7 +12,6 @@ class TelaPaciente(TelaAbstrata):
         })
 
     def pega_dados_paciente(self, editar: bool = False) -> dict:
-        """Na alteração o CPF (identificador) não é pedido de novo."""
         print("\n--- Dados do paciente ---")
         dados = {"nome": self.le_texto("Nome: ")}
         if not editar:

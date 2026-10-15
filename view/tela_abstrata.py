@@ -4,11 +4,6 @@ from datetime import date, datetime, time
 
 
 class TelaAbstrata(ABC):
-    """Base das telas: leitura validada (só o FORMATO) e formatação de saída.
-
-    As regras de negócio ficam no model; aqui só garantimos que o texto digitado
-    vira o tipo certo (int, float, date, time) antes de ir para o controlador.
-    """
 
     @abstractmethod
     def tela_opcoes(self) -> int:
