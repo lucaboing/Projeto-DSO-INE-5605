@@ -45,16 +45,38 @@ class ControladorSistema:
 
     def inicializa_sistema(self):
         opcoes = {
-            1: self.__controlador_paciente.abre_tela,
-            2: self.__controlador_profissional.abre_tela,
-            3: self.__controlador_clinica.abre_tela,
-            4: self.__controlador_tipo_atendimento.abre_tela,
-            5: self.__controlador_atendimento.abre_tela,
-            6: self.__controlador_relatorios.abre_tela,
+            1: self.abre_cadastros,
+            2: self.abre_registros,
+            3: self.__controlador_relatorios.abre_tela,
             0: self.encerra_sistema,
         }
         while True:
             opcoes[self.__tela_principal.tela_opcoes()]()
+
+    def abre_cadastros(self):
+        opcoes = {
+            1: self.__controlador_paciente.abre_tela,
+            2: self.__controlador_profissional.abre_tela,
+            3: self.__controlador_clinica.abre_tela,
+            4: self.__controlador_tipo_atendimento.abre_tela,
+        }
+        while True:
+            opcao = self.__tela_principal.tela_opcoes_cadastros()
+            if opcao == 0:
+                return
+            opcoes[opcao]()
+
+    def abre_registros(self):
+        opcoes = {
+            1: self.__controlador_atendimento.abre_tela,
+            2: self.__controlador_atendimento.abre_tela_procedimentos,
+            3: self.__controlador_atendimento.abre_tela_pagamentos,
+        }
+        while True:
+            opcao = self.__tela_principal.tela_opcoes_registros()
+            if opcao == 0:
+                return
+            opcoes[opcao]()
 
     def encerra_sistema(self):
         self.__tela_principal.mostra_mensagem("Encerrando o sistema...")

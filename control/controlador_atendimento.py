@@ -23,22 +23,33 @@ class ControladorAtendimento:
         return list(self.__atendimentos)
 
     def abre_tela(self):
-        opcoes = {
+        """Menu de atendimentos."""
+        self.__executar_menu(self.__tela_atendimento.tela_opcoes, {
             1: self.incluir_atendimento,
             2: self.alterar_atendimento,
             3: self.excluir_atendimento,
             4: self.listar_atendimentos,
-            5: self.incluir_procedimento,
-            6: self.alterar_procedimento,
-            7: self.excluir_procedimento,
-            8: self.listar_procedimentos,
-            9: self.incluir_pagamento,
-            10: self.alterar_pagamento,
-            11: self.excluir_pagamento,
-            12: self.listar_pagamentos,
-        }
+        })
+
+    def abre_tela_procedimentos(self):
+        self.__executar_menu(self.__tela_atendimento.tela_opcoes_procedimentos, {
+            1: self.incluir_procedimento,
+            2: self.alterar_procedimento,
+            3: self.excluir_procedimento,
+            4: self.listar_procedimentos,
+        })
+
+    def abre_tela_pagamentos(self):
+        self.__executar_menu(self.__tela_atendimento.tela_opcoes_pagamentos, {
+            1: self.incluir_pagamento,
+            2: self.alterar_pagamento,
+            3: self.excluir_pagamento,
+            4: self.listar_pagamentos,
+        })
+
+    def __executar_menu(self, le_opcao, opcoes: dict):
         while True:
-            opcao = self.__tela_atendimento.tela_opcoes()
+            opcao = le_opcao()
             if opcao == 0:
                 return
             try:

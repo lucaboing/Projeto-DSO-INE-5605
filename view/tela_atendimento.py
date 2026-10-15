@@ -8,15 +8,25 @@ class TelaAtendimento(TelaAbstrata):
             2: "Alterar atendimento",
             3: "Excluir atendimento",
             4: "Listar atendimentos",
-            5: "Incluir procedimento",
-            6: "Alterar procedimento",
-            7: "Excluir procedimento",
-            8: "Listar procedimentos de um atendimento",
-            9: "Incluir pagamento",
-            10: "Alterar pagamento",
-            11: "Excluir pagamento",
-            12: "Listar pagamentos de um atendimento",
-            0: "Retornar",
+            0: "Voltar",
+        })
+
+    def tela_opcoes_procedimentos(self) -> int:
+        return self._le_opcao("PROCEDIMENTOS", {
+            1: "Incluir procedimento",
+            2: "Alterar procedimento",
+            3: "Excluir procedimento",
+            4: "Listar procedimentos de um atendimento",
+            0: "Voltar",
+        })
+
+    def tela_opcoes_pagamentos(self) -> int:
+        return self._le_opcao("PAGAMENTOS", {
+            1: "Incluir pagamento",
+            2: "Alterar pagamento",
+            3: "Excluir pagamento",
+            4: "Listar pagamentos de um atendimento",
+            0: "Voltar",
         })
 
     # ------------------------------------------------------------------ entrada
